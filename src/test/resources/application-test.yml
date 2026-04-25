@@ -1,0 +1,17 @@
+spring:
+  flyway:
+    clean-disabled: false
+  cache:
+    type: none
+  data:
+    redis:
+      host: localhost
+
+app:
+  jwt:
+    secret: dGVzdFNlY3JldEtleUZvclVuaXRUZXN0c09ubHlOb3RGb3JQcm9k
+    expiration-ms: 3600000
+
+logging:
+  level:
+    com.ums: WARN

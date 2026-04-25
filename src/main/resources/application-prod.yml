@@ -1,0 +1,29 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+
+  flyway:
+    clean-disabled: true
+
+server:
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 20
+
+logging:
+  level:
+    root: WARN
+    com.ums: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  tracing:
+    sampling:
+      probability: 0.05
