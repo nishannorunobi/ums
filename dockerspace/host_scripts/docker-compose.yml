@@ -1,0 +1,12 @@
+services:
+  ums:
+    build:
+      context: ../..
+      dockerfile: dockerspace/host_scripts/Dockerfile
+    container_name: ums-app
+    ports:
+      - "8080:8080"
+    env_file:
+      - ../../.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

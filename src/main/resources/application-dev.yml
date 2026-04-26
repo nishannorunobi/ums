@@ -1,20 +1,11 @@
 spring:
   jpa:
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
-    show-sql: true
-
-  flyway:
-    clean-disabled: false  # allow flyway:clean in dev only
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
     com.ums: DEBUG
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0

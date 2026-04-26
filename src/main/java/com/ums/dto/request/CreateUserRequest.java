@@ -1,37 +1,29 @@
 package com.ums.dto.request;
 
-import jakarta.validation.constraints.*;
-import lombok.Data;
-
-import java.util.Set;
-
-@Data
 public class CreateUserRequest {
 
-    @NotBlank
-    @Size(min = 3, max = 50)
-    @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Username may only contain letters, digits, or underscores")
     private String username;
-
-    @NotBlank
-    @Email
-    @Size(max = 100)
     private String email;
-
-    @NotBlank
-    @Size(min = 8, max = 120)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).+$",
-             message = "Password must contain uppercase, lowercase, digit, and special character")
     private String password;
-
-    @Size(max = 80)
     private String firstName;
-
-    @Size(max = 80)
     private String lastName;
-
-    @Size(max = 20)
     private String phoneNumber;
 
-    private Set<String> roles;
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }

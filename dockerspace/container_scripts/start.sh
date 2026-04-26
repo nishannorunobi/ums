@@ -5,10 +5,11 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$PROJECT_ROOT"
 
-PID_FILE="$SCRIPT_DIR/.ums.pid"
-LOG_FILE="$SCRIPT_DIR/logs/ums.log"
+PID_FILE="$PROJECT_ROOT/.ums.pid"
+LOG_FILE="$PROJECT_ROOT/logs/ums.log"
 APP_PORT="${SERVER_PORT:-8080}"
 PROFILE="${SPRING_PROFILES_ACTIVE:-dev}"
 

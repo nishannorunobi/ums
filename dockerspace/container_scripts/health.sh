@@ -3,7 +3,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PID_FILE="$SCRIPT_DIR/.ums.pid"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+PID_FILE="$PROJECT_ROOT/.ums.pid"
 APP_PORT="${SERVER_PORT:-8080}"
 DB_HOST="${DB_HOST:-localhost}"
 DB_PORT="${DB_PORT:-5432}"
