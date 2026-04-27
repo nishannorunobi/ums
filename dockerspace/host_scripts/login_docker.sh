@@ -5,9 +5,16 @@ set -euo pipefail
 
 CONTAINER_NAME="ums-app"
 
-if ! docker container inspect "$CONTAINER_NAME" &>/dev/null; then
-    echo "Container '$CONTAINER_NAME' is not running."
+state=$(docker inspect -f '{{.State.Status}}' "$CONTAINER_NAME" 2>/dev/null || true)
+
+if [ -z "$state" ]; then
+    echo "Container '$CONTAINER_NAME' does not exist."
     exit 1
 fi
 
-docker exec -it "$CONTAINER_NAME" bash
+if [ "$state" != "running" ]; then
+    echo "Container '$CONTAINER_NAME' is $state, not running."
+    exit 1
+fi
+
+docker exec -it "$CONTAINER_NAME" sh

@@ -10,3 +10,9 @@ services:
       - ../../.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - ums-network
+
+networks:
+  ums-network:
+    external: true

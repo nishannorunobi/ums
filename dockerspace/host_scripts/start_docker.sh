@@ -1,2 +1,2 @@
 #!/bin/bash
-cd "$(dirname "${BASH_SOURCE[0]}")/../.." && make up
+cd "$(dirname "${BASH_SOURCE[0]}")" && make up
