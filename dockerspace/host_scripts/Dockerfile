@@ -12,19 +12,18 @@ RUN mvn package -DskipTests -q
 RUN java -Djarmode=layertools -jar target/*.jar extract
 
 # ── Stage 2: Runtime ──────────────────────────────────────────────────────────
-FROM eclipse-temurin:21-jre-alpine AS runtime
+FROM eclipse-temurin:21-jdk-alpine AS runtime
 WORKDIR /app
 
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# Dev tools: bash for scripts, python3 for ums-agent, curl/procps for health checks
+RUN apk add --no-cache bash python3 py3-pip curl procps
 
 COPY --from=builder /build/dependencies/          ./
 COPY --from=builder /build/spring-boot-loader/    ./
 COPY --from=builder /build/snapshot-dependencies/ ./
 COPY --from=builder /build/application/           ./
 
-USER appuser
-
-EXPOSE 8080
+EXPOSE 8080 8891 3000
 
 ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom"
 

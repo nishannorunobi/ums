@@ -1,0 +1,12 @@
+# Credentials
+agent.conf
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs / runtime
+memory/server.log
+memory/chat_history.log

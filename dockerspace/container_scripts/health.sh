@@ -12,8 +12,7 @@ DB_NAME="${POSTGRES_DB:-umsdb}"
 REDIS_HOST="${REDIS_HOST:-localhost}"
 REDIS_PORT="${REDIS_PORT:-6379}"
 
-RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
-CYAN='\033[0;36m'; BOLD='\033[1m'; RESET='\033[0m'
+source "$SCRIPT_DIR/common.sh"
 
 PASS="${GREEN}✔${RESET}"
 FAIL="${RED}✘${RESET}"
@@ -25,11 +24,7 @@ check() {
     [ -n "$detail" ] && echo "  ($detail)" || echo ""
 }
 
-echo ""
-echo -e "${BOLD}╔══════════════════════════════════════╗${RESET}"
-echo -e "${BOLD}║        UMS Health Check              ║${RESET}"
-echo -e "${BOLD}╚══════════════════════════════════════╝${RESET}"
-echo ""
+banner "UMS Health Check"
 
 # ── Process ───────────────────────────────────────────────────────────────────
 echo -e "${BOLD}Process${RESET}"

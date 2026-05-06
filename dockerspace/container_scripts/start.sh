@@ -13,14 +13,7 @@ LOG_FILE="$PROJECT_ROOT/logs/ums.log"
 APP_PORT="${SERVER_PORT:-8080}"
 PROFILE="${SPRING_PROFILES_ACTIVE:-dev}"
 
-# ── Colours ───────────────────────────────────────────────────────────────────
-RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
-CYAN='\033[0;36m'; BOLD='\033[1m'; RESET='\033[0m'
-
-info()    { echo -e "${CYAN}[INFO]${RESET}  $*"; }
-success() { echo -e "${GREEN}[OK]${RESET}    $*"; }
-warn()    { echo -e "${YELLOW}[WARN]${RESET}  $*"; }
-error()   { echo -e "${RED}[ERROR]${RESET} $*" >&2; }
+source "$SCRIPT_DIR/common.sh"
 
 # ── Guard: already running ────────────────────────────────────────────────────
 if [ -f "$PID_FILE" ]; then
@@ -33,11 +26,7 @@ if [ -f "$PID_FILE" ]; then
     fi
 fi
 
-echo ""
-echo -e "${BOLD}╔══════════════════════════════════════╗${RESET}"
-echo -e "${BOLD}║     UMS Spring Boot — START          ║${RESET}"
-echo -e "${BOLD}╚══════════════════════════════════════╝${RESET}"
-echo ""
+banner "UMS Spring Boot — START"
 
 # ── Parse args ────────────────────────────────────────────────────────────────
 SKIP_BUILD=false
@@ -158,12 +147,5 @@ else
         ELAPSED=$((ELAPSED + 3))
     done
 
-    echo ""
-    success "UMS is UP! (PID $APP_PID)"
-    echo ""
-    echo -e "  ${BOLD}Swagger UI ${RESET}→  http://localhost:$APP_PORT/swagger-ui.html"
-    echo -e "  ${BOLD}Health     ${RESET}→  http://localhost:$APP_PORT/actuator/health"
-    echo -e "  ${BOLD}Logs       ${RESET}→  tail -f $LOG_FILE"
-    echo -e "  ${BOLD}Stop       ${RESET}→  ./stop.sh"
-    echo ""
+    success "UMS is UP! (PID $APP_PID)  →  http://localhost:$APP_PORT"
 fi

@@ -4,8 +4,10 @@ services:
       context: ../..
       dockerfile: dockerspace/host_scripts/Dockerfile
     container_name: ums-app
+    volumes:
+      - ../../:/ums   # project source — ums-agent, container scripts, and mvnw live here
     ports:
-      - "8080:8080"
+      - "8080:8080"   # Spring Boot API
     env_file:
       - ../../.env
     extra_hosts:
